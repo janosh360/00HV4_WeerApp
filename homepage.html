@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Weerbericht</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="instruct_buienradarLibrary.js"></script>
+    <script type="text/javascript">
+		function showWeatherInfo() {
+			document.getElementById("plaats").innerHTML = currentLocation_stationRegio();
+			
+			document.getElementById("icoon").src = icoonNu();
+			document.getElementById("temperatuur").innerHTML = currentLocation_temperature();
+			var windrichting = currentLocation_stationWindDirectionDegree();
+			windrichting = windrichting - 90;
+			document.getElementById("windkracht").innerHTML = currentLocation_stationWindSpeed();
+			document.getElementById("regenval").innerHTML = currentLocation_stationRainFallLastHour();
+			document.getElementById("beschrijving").innerHTML = currentLocation_stationDescription();
+			
+			document.getElementById("luchtdruk").innerHTML = currentLocation_stationAirPressure();
+			document.getElementById("zicht").innerHTML = currentLocation_stationVisibility();
+			document.getElementById("luchtvochtigheid").innerHTML = currentLocation_stationHumidity();
+			document.getElementById("zonintensiteit").innerHTML = currentLocation_stationSunPower();
+			
+			document.getElementById("windpijl").style.transform = "rotate("+windrichting+"deg)";
+			
+			document.body.style.background = achtergrond();
+			
+			document.getElementById("samenvatting").innerHTML = forecast_summary();
+		}
+    </script>
+  </head>
+  
+  <body class="vandaag" onload="loadBuienradarData(); getLocation();">
+      <div class="headwrapper">
+		<header>
+			<table style="width:100%; height:60px; border:none;">
+				<tr>
+					<td style="width:10%; border:none; text-align: center;"><a href="instellingen.html"><img id="instellingen" src="instellingen.png"></a></td>
+					<td style="padding-left:17%; border:none; text-align: center;"><p id="plaats"></p></td>
+				</tr>
+			</table>
+		</header>
+		<hr>
+		<nav>
+			<a href="homepage.html" class="focus">Vandaag</a>
+			<a href="weekoverzicht.html">Weekoverzicht</a>
+		</nav>
+	</div>
+	
+	<div class="wrapper" style="width:100%">
+		<table id="homepageTabel" style="border: none; width: 98%;">
+			<tr>
+				<td style="border:none; width:60%; text-align:center; padding-top:5px;"><span id="temperatuur">...</span></td>
+				<td style="border:none; width:40%;"><img style="width:100%; margin-top:10%;" id="icoon"></td>
+			</tr>
+		</table>
+		<p style="font-size: 19px; margin: 0 0 0 0; width: 100%; text-align: center;"><span id="beschrijving">...</span></p>
+		<table style="border:none; width:98%;">
+			<tr>
+				<td style="border:none; width:50%; text-align:center;"><span id="windkracht">...</span> <img style="width:10%" id="windpijl" src="pijl.png"></td>
+				<td style="border:none; width:50%; text-align:center;"><span id="regenval">...</span> <img style="width:10%" class="druppel" src="druppel.png"></td>
+			</tr>
+		</table>
+		<hr><br>
+		<p style="padding-left:20px;"><span id="samenvatting">...</span></p>
+		<br><hr>
+		<h3 style="padding-left:20px;">Actuele gegevens</h3>
+		<p style="padding-left:20px;">Luchtdruk: <span id="luchtdruk">...</span> HPa
+		<br>Zicht: <span id="zicht">...</span> m
+		<br>Luchtvochtigheid: <span id="luchtvochtigheid">...</span>%
+		<br>Zonintenstiteit: <span id="zonintensiteit">...</span> W/m<sup>2</sup></p>	
+	</div>
+  </body>
+</html>

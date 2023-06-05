@@ -1,0 +1,123 @@
+.vandaag {
+	background-color: #00868b;
+	color: #e6e6e6;
+	font-family: Courier New;
+}
+
+#temperatuur {
+	font-size: 50px;
+}
+
+#achtergrond {
+	margin: 28% 0 0 0;
+	width: 100%;
+	top: 0;
+	left: 0;
+	position: fixed;
+	height: 100%;
+}
+
+.weekoverzicht {
+	background-color: #00868b;
+	color: #e6e6e6;
+	font-family: Courier New;
+}
+
+#windpijl1, #windpijl2, #windpijl3, #windpijl4, #windpijl5 {
+	width: 100%;
+}
+
+#icoon1, #icoon2, #icoon3, #icoon4, #icoon5 {
+	width: 100%;
+}
+
+#zon {
+	width: 100%;
+}
+
+.instellingen {
+	background-color: #00868b;
+	color: #e6e6e6;
+	font-family: Courier New;
+}
+
+#instellingentabel {
+	border: 0px;
+}
+
+#instellingentabel {
+	height: 150px;
+	margin: 0 0 5% 0;
+}
+
+#instellingen, #terug {
+	width: 100%;
+	margin: 2% 9% 0 20%;
+}
+
+div {
+	display: block;
+}
+
+hr {
+	margin: 0 0 0 0;
+}
+
+header p {
+	font-size: 180%;
+	margin: 2% 2% 2% 2%;
+	text-align: left;
+	font-weight: bold;
+	color: white;
+}
+
+nav {
+	margin: auto;
+	text-align: center;
+	display: block;
+	width: 320px;
+	padding: 3% 0 3% 0;
+}
+
+nav a {
+	text-decoration: none;
+	text-align: center;
+	color: white;
+	display: inline-block;
+	width: 150px;
+} 
+
+nav a:hover, .focus {
+	font-weight: bold;
+	color: 	#fee156;
+}
+
+table, td {
+	border: 1px solid #c0c0be;
+	border-collapse: collapse;
+}
+
+table {
+	height: 120px
+}
+
+.druppel {
+	width: 100%;
+}
+
+.headwrapper {
+	width: 100%;
+	top: 0;
+	left: 0;
+	position: fixed;
+	box-shadow: 0 1px 10px white;
+	background-color: #00868b;
+}
+
+.wrapper {
+	margin: 35% 0 0 0;
+}
+
+#wrapper {
+	margin: 22% 0 0 0;
+}

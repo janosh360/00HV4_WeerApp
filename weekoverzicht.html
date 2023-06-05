@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Weerbericht</title>
+    <script type="text/javascript" src="instruct_buienradarLibrary.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript">
+      function showWeatherInfo() {
+		//algemeen
+		document.getElementById("plaats").innerHTML = currentLocation_stationRegio();
+		document.body.style.background = achtergrond();
+		
+		document.getElementById("temperatuurEenheid1").innerHTML = temperatuurEenheid();
+		document.getElementById("temperatuurEenheid2").innerHTML = temperatuurEenheid();
+		document.getElementById("temperatuurEenheid3").innerHTML = temperatuurEenheid();
+		document.getElementById("temperatuurEenheid4").innerHTML = temperatuurEenheid();
+		document.getElementById("temperatuurEenheid5").innerHTML = temperatuurEenheid();
+		
+		//de weerinformatie voor dag 1: morgen
+		var datum1 = forecast_date(1);
+		document.getElementById("dag1").innerHTML = date_showDay(datum1);
+		document.getElementById("maand1").innerHTML = date_showMonth(datum1);
+		document.getElementById("dagnaam1").innerHTML = date_showName(forecast_date(1));
+		document.getElementById("minTemperatuur1").innerHTML = forecast_minTemperature(1);
+		document.getElementById("maxTemperatuur1").innerHTML = forecast_maxTemperature(1);
+		var windrichtingDegree1 = forecast_windDirection(1);
+		document.getElementById("windpijl1").style.transform = "rotate("+windrichtingDegree1+"deg)";
+		document.getElementById("windkracht1").innerHTML = forecast_wind(1);
+		document.getElementById("regenkans1").innerHTML = forecast_rainChance(1);
+		document.getElementById("regen1").innerHTML = forecast_mmRainMax(1);
+		document.getElementById("zonkans1").innerHTML = forecast_sunChance(1);
+		document.getElementById("icoon1").src = icoon(1);
+		
+		
+		//de weerinformatie voor dag 2
+		var datum2 = forecast_date(2);
+		document.getElementById("dag2").innerHTML = date_showDay(datum2);
+		document.getElementById("maand2").innerHTML = date_showMonth(datum2);
+		document.getElementById("dagnaam2").innerHTML = date_showName(forecast_date(2));
+		document.getElementById("minTemperatuur2").innerHTML = forecast_minTemperature(2);
+		document.getElementById("maxTemperatuur2").innerHTML = forecast_maxTemperature(2);
+		var windrichtingDegree2 = forecast_windDirection(2);
+		document.getElementById("windpijl2").style.transform = "rotate("+windrichtingDegree2+"deg)";
+		document.getElementById("windkracht2").innerHTML = forecast_wind(2);
+		document.getElementById("regenkans2").innerHTML = forecast_rainChance(2);
+		document.getElementById("regen2").innerHTML = forecast_mmRainMax(2);
+		document.getElementById("zonkans2").innerHTML = forecast_sunChance(2);
+		document.getElementById("icoon2").src = icoon(2);
+		
+		
+		//de weerinformatie voor dag 3
+		var datum3 = forecast_date(3);
+		document.getElementById("dag3").innerHTML = date_showDay(datum3);
+		document.getElementById("maand3").innerHTML = date_showMonth(datum3);
+		document.getElementById("dagnaam3").innerHTML = date_showName(forecast_date(3));
+		document.getElementById("minTemperatuur3").innerHTML = forecast_minTemperature(3);
+		document.getElementById("maxTemperatuur3").innerHTML = forecast_maxTemperature(3);
+		var windrichtingDegree3 = forecast_windDirection(3);
+		document.getElementById("windpijl3").style.transform = "rotate("+windrichtingDegree3+"deg)";
+		document.getElementById("windkracht3").innerHTML = forecast_wind(3);
+		document.getElementById("regenkans3").innerHTML = forecast_rainChance(3);
+		document.getElementById("regen3").innerHTML = forecast_mmRainMax(3);
+		document.getElementById("zonkans3").innerHTML = forecast_sunChance(3);
+		document.getElementById("icoon3").src = icoon(3);
+		
+		
+		//de weerinformatie voor dag 4
+		var datum4 = forecast_date(4);
+		document.getElementById("dag4").innerHTML = date_showDay(datum4);
+		document.getElementById("maand4").innerHTML = date_showMonth(datum4);
+		document.getElementById("dagnaam4").innerHTML = date_showName(forecast_date(4));
+		document.getElementById("minTemperatuur4").innerHTML = forecast_minTemperature(4);
+		document.getElementById("maxTemperatuur4").innerHTML = forecast_maxTemperature(4);
+		var windrichtingDegree4 = forecast_windDirection(4);
+		document.getElementById("windpijl4").style.transform = "rotate("+windrichtingDegree4+"deg)";
+		document.getElementById("windkracht4").innerHTML = forecast_wind(4);
+		document.getElementById("regenkans4").innerHTML = forecast_rainChance(4);
+		document.getElementById("regen4").innerHTML = forecast_mmRainMax(4);
+		document.getElementById("zonkans4").innerHTML = forecast_sunChance(4);
+		document.getElementById("icoon4").src = icoon(4);
+		
+		
+		//de weerinformatie voor dag 5
+		var datum5 = forecast_date(5);
+		document.getElementById("dag5").innerHTML = date_showDay(datum5);
+		document.getElementById("maand5").innerHTML = date_showMonth(datum5);
+		document.getElementById("dagnaam5").innerHTML = date_showName(forecast_date(5));
+		document.getElementById("minTemperatuur5").innerHTML = forecast_minTemperature(5);
+		document.getElementById("maxTemperatuur5").innerHTML = forecast_maxTemperature(5);
+		var windrichtingDegree5 = forecast_windDirection(5);
+		document.getElementById("windpijl5").style.transform = "rotate("+windrichtingDegree5+"deg)";
+		document.getElementById("windkracht5").innerHTML = forecast_wind(5);
+		document.getElementById("regenkans5").innerHTML = forecast_rainChance(5);
+		document.getElementById("regen5").innerHTML = forecast_mmRainMax(5);
+		document.getElementById("zonkans5").innerHTML = forecast_sunChance(5);
+		document.getElementById("icoon5").src = icoon(5);
+      }
+    </script>
+  </head>
+  
+  <body class="weekoverzicht" onload="loadBuienradarData(); getLocation();">
+    <div class="headwrapper">
+		<header>
+			<table style="width:100%; height:60px; border: none;">
+				<tr>
+					<td style="width:10%; border:none; text-align: center;"><a href="instellingen.html"><img id="instellingen" src="instellingen.png"></a></td>
+					<td style="padding-left:17%; border:none; text-align: center;"><p id="plaats"></p></td>
+				</tr>
+			</table>
+		</header>
+		<hr>
+		<nav>
+			<a href="homepage.html">Vandaag</a>
+			<a href="weekoverzicht.html" class="focus">Weekoverzicht</a>
+		</nav>
+	</div>
+	
+	<div class="wrapper">
+	
+	<!--dag1-->
+	<table style="width:98%; border: none;">
+		<tr>
+			<td style="width:29%; border-left: none; border-top: none; text-align: center;" rowspan="2"><span id="dagnaam1">...</span><br><span id="dag1">...</span> <span id="maand1">...</span></td>
+			<td style="width:20%; border-top: none; text-align: center;" rowspan="2"><img id="icoon1"></td>
+			<td style="width:10%; border-right: none; border-top: none; text-align: center;"><span id="maxTemperatuur1">...</span>
+				<br>
+				<span id="minTemperatuur1">...</span>
+			</td>
+			<td style="width:10%; border-left: none; border-top: none; text-align: center;"><span id="temperatuurEenheid1">...</span></td>
+			<td style="width:14%; border-right: none; border-top: none; text-align: center;"><span id="windkracht1">...</span></td>
+			<td style="width:7%; border-left: none; border-right: none; border-top: none; text-align: center;"><img id="windpijl1" src="pijl.png"></td>
+		</tr>
+		<tr>
+			<td style="border-right: none; text-align: center;"><span id="zonkans1">...</span>%</td>
+			<td style="border-left: none; text-align: center;"><img id="zon" src="zon.png"></td>
+			<td style="border-right: none; text-align: center;"><span id="regenkans1">...</span>%
+				<br>
+				<span id="regen1">...</span></td>
+			<td style="border-left: none; border-right: none; text-align: center;"><img class="druppel" src="druppel.png"></td>
+		</tr>
+	</table>
+	
+	<!--dag 2-->
+	<table style="width:98%; border: none;">
+		<tr>
+			<td style="width:29%; border-left: none; border-top: none; text-align: center;" rowspan="2"><span id="dagnaam2">...</span><br><span id="dag2">...</span> <span id="maand2">...</span></td>
+			<td style="width:20%; border-top: none; text-align: center;" rowspan="2"><img id="icoon2"></td>
+			<td style="width:10%; border-right: none; border-top: none; text-align: center;"><span id="maxTemperatuur2">...</span>
+				<br>
+				<span id="minTemperatuur2">...</span>
+			</td>
+			<td style="width:10%; border-left: none; border-top: none; text-align: center;"><span id="temperatuurEenheid2">...</span></td>
+			<td style="width:14%; border-right: none; border-top: none; text-align: center;"><span id="windkracht2">...</span></td>
+			<td style="width:7%; border-left: none; border-right: none; border-top: none; text-align: center;"><img id="windpijl2" src="pijl.png"></td>
+		</tr>
+		<tr>
+			<td style="border-right: none; text-align: center;"><span id="zonkans2">...</span>%</td>
+			<td style="border-left: none; text-align: center;"><img id="zon" src="zon.png"></td>
+			<td style="border-right: none; text-align: center;"><span id="regenkans2">...</span>%
+				<br>
+				<span id="regen2">...</span></td>
+			<td style="border-left: none; border-right: none; text-align: center;"><img class="druppel" src="druppel.png"></td>
+		</tr>
+	</table>
+		
+	<!--dag 3-->
+	<table style="width:98%; border: none;">
+		<tr>
+			<td style="width:29%; border-left: none; border-top: none; text-align: center;" rowspan="2"><span id="dagnaam3">...</span><br><span id="dag3">...</span> <span id="maand3">...</span></td>
+			<td style="width:20%; border-top: none; text-align: center;" rowspan="2"><img id="icoon3"></td>
+			<td style="width:10%; border-right: none; border-top: none; text-align: center;"><span id="maxTemperatuur3">...</span>
+				<br>
+				<span id="minTemperatuur3">...</span>
+			</td>
+			<td style="width:10%; border-left: none; border-top: none; text-align: center;"><span id="temperatuurEenheid3">...</span></td>
+			<td style="width:14%; border-right: none; border-top: none; text-align: center;"><span id="windkracht3">...</span></td>
+			<td style="width:7%; border-left: none; border-right: none; border-top: none; text-align: center;"><img id="windpijl3" src="pijl.png"></td>
+		</tr>
+		<tr>
+			<td style="border-right: none; text-align: center;"><span id="zonkans3">...</span>%</td>
+			<td style="border-left: none; text-align: center;"><img id="zon" src="zon.png"></td>
+			<td style="border-right: none; text-align: center;"><span id="regenkans3">...</span>%
+				<br>
+				<span id="regen3">...</span></td>
+			<td style="border-left: none; border-right: none; text-align: center;"><img class="druppel" src="druppel.png"></td>
+		</tr>
+	</table>
+		
+	<!--dag 4-->
+	<table style="width:98%; border: none;">
+		<tr>
+			<td style="width:29%; border-left: none; border-top: none; text-align: center;" rowspan="2"><span id="dagnaam4">...</span><br><span id="dag4">...</span> <span id="maand4">...</span></td>
+			<td style="width:20%; border-top: none; text-align: center;" rowspan="2"><img id="icoon4"></td>
+			<td style="width:10%; border-right: none; border-top: none; text-align: center;"><span id="maxTemperatuur4">...</span>
+				<br>
+				<span id="minTemperatuur4">...</span>
+			</td>
+			<td style="width:10%; border-left: none; border-top: none; text-align: center;"><span id="temperatuurEenheid4">...</span></td>
+			<td style="width:14%; border-right: none; border-top: none; text-align: center;"><span id="windkracht4">...</span></td>
+			<td style="width:7%; border-left: none; border-right: none; border-top: none; text-align: center;"><img id="windpijl4" src="pijl.png"></td>
+		</tr>
+		<tr>
+			<td style="border-right: none; text-align: center;"><span id="zonkans4">...</span>%</td>
+			<td style="border-left: none; text-align: center;"><img id="zon" src="zon.png"></td>
+			<td style="border-right: none; text-align: center;"><span id="regenkans4">...</span>%
+				<br>
+				<span id="regen4">...</span></td>
+			<td style="border-left: none; border-right: none; text-align: center;"><img class="druppel" src="druppel.png"></td>
+		</tr>
+	</table>
+		
+	<!--dag 5-->
+	<table style="width:98%; border: none;">
+		<tr>
+			<td style="width:29%; border-left: none; border-top: none; border-bottom: none; text-align: center;" rowspan="2"><span id="dagnaam5">...</span><br><span id="dag5">...</span> <span id="maand5">...</span></td>
+			<td style="width:20%; border-top: none; border-bottom: none; text-align: center;" rowspan="2"><img id="icoon5"></td>
+			<td style="width:10%; border-right: none; border-top: none; text-align: center;"><span id="maxTemperatuur5">...</span>
+				<br>
+				<span id="minTemperatuur5">...</span>
+			</td>
+			<td style="width:10%; border-left: none; border-top: none; text-align: center;"><span id="temperatuurEenheid5">...</span></td>
+			<td style="width:14%; border-right: none; border-top: none; text-align: center;"><span id="windkracht5">...</span></td>
+			<td style="width:7%; border-left: none; border-right: none; border-top: none; text-align: center;"><img id="windpijl5" src="pijl.png"></td>
+		</tr>
+		<tr>
+			<td style="border-right: none; border-bottom: none; text-align: center;"><span id="zonkans5">...</span>%</td>
+			<td style="border-left: none; border-bottom: none; text-align: center;"><img id="zon" src="zon.png"></td>
+			<td style="border-right: none; border-bottom: none; text-align: center;"><span id="regenkans5">...</span>%
+				<br>
+				<span id="regen5">...</span></td>
+			<td style="border-left: none; border-right: none; border-bottom: none; text-align: center;"><img class="druppel" src="druppel.png"></td>
+		</tr>
+	</table>
+	</div>
+  </body>
+</html>
